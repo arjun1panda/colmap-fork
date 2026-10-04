@@ -72,6 +72,11 @@ def test_visual_centric_imu_preintegration_cost_constructs() -> None:
     c_stab = cf.VisualCentricImuPreintegrationCost(data, q_iori, q_iori)
     assert c_stab is not None
 
+    c_metric = cf.VisualCentricImuPreintegrationCost(
+        data, q_iori, q_iori, metric_imu_from_cam=True
+    )
+    assert c_metric is not None
+
 
 def test_analytical_visual_centric_imu_preintegration_cost_constructs() -> None:
     cf = pycolmap._core.cost_functions
@@ -86,6 +91,11 @@ def test_analytical_visual_centric_imu_preintegration_cost_constructs() -> None:
         data, q_iori, q_iori
     )
     assert c_stab is not None
+
+    c_metric = cf.AnalyticalVisualCentricImuPreintegrationCost(
+        data, q_iori, q_iori, metric_imu_from_cam=True
+    )
+    assert c_metric is not None
 
 
 def test_inertial_rotation_cost_constructs() -> None:
@@ -126,3 +136,8 @@ def test_inertial_global_positioning_cost_constructs() -> None:
 
     c = cf.InertialGlobalPositioningCost(data, rig, q_cw, q_cw)
     assert c is not None
+
+    c_metric = cf.InertialGlobalPositioningCost(
+        data, rig, q_cw, q_cw, metric_imu_from_cam=True
+    )
+    assert c_metric is not None
